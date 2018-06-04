@@ -1,0 +1,87 @@
+<html>
+<!--NERD SECTION WHY ARE YOU HERE. GO back simon-->
+<head>
+	<title> Hello </title>
+	<style>
+		#main 
+		{
+			margin:300px 100px 100px 400px;
+			width: 100%;
+			height:100%;
+		}
+		body
+		{
+			background: rgb(0,255,255);
+			font-family: Times New Roman;
+			font-size: 24px;
+			color: rgb(0,100,100);
+		}
+		.mrbox{
+			padding: 30px;
+			background: rgba(100,100,100,0.3);
+			margin: 7px;
+			display:inline-block;
+		}
+		
+	</style>
+</head> 
+
+
+<body onclick="Changecolour"> 
+<div id="main">
+		<!--<div class="mrbox" id="days"></div>
+		<div class="mrbox" id="hours"></div>
+		<div class="mrbox" id ="mints"></div>
+		<div class="mrbox" id="secs"></div>-->
+		<h1>Hello World</h1>
+	<br />
+		<div class="mrbox"><div id="days"></div>Days</div>
+		<div class="mrbox"><div id="hours"></div>Hours</div>
+		<div class="mrbox"><div id="mints"></div>Minutes</div>
+		<div class="mrbox"><div id="secs"></div>Seconds</div>
+</div>
+
+<script>
+		var countDownDate = new Date("Dec 15, 2018 00:00:00").getTime();
+		var body = document.getElementById("main");
+		function Changecolour()
+		{
+			var bgcolor = prompt("Enter colour ","0,255,255");
+			
+			document.body.style.background = "rgb(" + bgcolor + ")";
+		}
+		body.addEventListener("click",Changecolour);
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now an the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  //document.getElementById("dyn").innerHTML = days + " " + hours + " "+  minutes +" " +seconds ;
+  document.getElementById("days").innerHTML = days;
+  document.getElementById("hours").innerHTML = hours;
+  document.getElementById("mints").innerHTML = minutes;
+  document.getElementById("secs").innerHTML = seconds;
+
+  // If the count down is finished, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("main").innerHTML = '<div class="mrbox">What ever message you want</div>';
+  }
+}, 1000);
+	</script>
+
+  </body>
+
+</html>
