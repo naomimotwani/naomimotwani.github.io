@@ -5,9 +5,11 @@
 	<style>
 		#main 
 		{
-			margin:300px 100px 100px 400px;
+			
 			width: 100%;
-			height:100%;
+			height:80%;
+			overflow: hidden;
+			
 		}
 		body
 		{
@@ -15,6 +17,7 @@
 			font-family: Times New Roman;
 			font-size: 24px;
 			color: rgb(255,255,255);
+			align-content: center;
 		}
 		.mrbox{
 			padding: 30px;
@@ -22,25 +25,70 @@
 			margin: 7px;
 			display:inline-block;
 		}
+		@media only screen 
+		and (min-device-width : 375px) 
+		and (max-device-width : 667px) 
+		and (orientation : landscape) {
+			#main
+			{
+				margin: 40px 40px 0px 40px;
+				overflow: visible;
+			}
+			body{
+				font-size: 50px;
+			}
+		}
+
+		@media only screen 
+		and (min-device-width : 375px) 
+		and (max-device-width : 667px) 
+		and (orientation : portrait) {
+			#main
+			{
+				margin-top: 10px;
+				margin-left: 10px;
+			}
+			body{
+				font-size: 55px;
+			}
+			.dumbo{
+				margin-left: 10%;
+			}
+		}
+
+		.cn
+		{
+			text-align: center;
+			align-self: center;
+		}
+		.fade { 
+			animation: fadein 0.8s;
+		}
+
+		@keyframes fadein {
+			from {
+				opacity:0;
+			}
+			to {
+				opacity:1;
+			}
+		}
+
 		
 	</style>
 </head> 
 
 
-<body onclick="Changecolour"> 
-<div id="main">
-		<!--<div class="mrbox" id="days"></div>
-		<div class="mrbox" id="hours"></div>
-		<div class="mrbox" id ="mints"></div>
-		<div class="mrbox" id="secs"></div>-->
-		<h1>AYE</h1>
-		 <img src="dumboo.jpg" width="570" height="400"/>
-        <p> Seeing Your Face In </p>
+<body class="fade"> 
+<div id="main" class="cn">
+		<h1 class="cn">AYE</h1>
+		 <img class="cn dumbo" src="dumboo.jpg" width="570" height="400"/>
+        <p class="cn"> Seeing Your Face In </p>
 	<br />
-		<div class="mrbox"><div id="days"></div>Days</div>
-		<div class="mrbox"><div id="hours"></div>Hours</div>
-		<div class="mrbox"><div id="mints"></div>Minutes</div>
-		<div class="mrbox"><div id="secs"></div>Seconds</div>
+		<div class="mrbox"><div id="days" class="fade"></div>Days</div>
+		<div class="mrbox"><div id="hours" class="fade"></div>Hours</div>
+		<div class="mrbox"><div id="mints" class="fade"></div>Minutes</div>
+		<div class="mrbox"><div id="secs" class="fade"></div>Seconds</div>
 </div>
 
 <script>
@@ -54,34 +102,35 @@
 		}
 		body.addEventListener("click",Changecolour);
 
-// Update the count down every 1 second
-var x = setInterval(function() {
+		// Update the count down every 1 second
+		function dataUpdate(){
 
-  // Get todays date and time
-  var now = new Date().getTime();
+			// Get todays date and time
+			var now = new Date().getTime();
 
-  // Find the distance between now an the count down date
-  var distance = countDownDate - now;
+			// Find the distance between now an the count down date
+			var distance = countDownDate - now;
 
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+			// Time calculations for days, hours, minutes and seconds
+			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-  // Display the result in the element with id="demo"
-  //document.getElementById("dyn").innerHTML = days + " " + hours + " "+  minutes +" " +seconds ;
-  document.getElementById("days").innerHTML = days;
-  document.getElementById("hours").innerHTML = hours;
-  document.getElementById("mints").innerHTML = minutes;
-  document.getElementById("secs").innerHTML = seconds;
-
-  // If the count down is finished, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("main").innerHTML = '<div class="mrbox">DODO LIFE</div>';
-  }
-}, 1000);
+			// Display the result in the element with id="demo"
+			//document.getElementById("dyn").innerHTML = days + " " + hours + " "+  minutes +" " +seconds ;
+			document.getElementById("days").innerHTML = days;
+			document.getElementById("hours").innerHTML = hours;
+			document.getElementById("mints").innerHTML = minutes;
+			document.getElementById("secs").innerHTML = seconds;
+			// If the count down is finished, write some text 
+			if (distance < 0) {
+				clearInterval(x);
+				document.getElementById("main").innerHTML = '<div class="mrbox">DODO LIFE</div>';
+			}
+		}
+		dataUpdate();
+		var x = setInterval(dataUpdate, 1000);
 	</script>
 
   </body>
